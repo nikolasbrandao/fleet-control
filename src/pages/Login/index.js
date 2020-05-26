@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { CarGarage } from '@styled-icons/boxicons-solid/CarGarage'
 
-import { PageWrapper } from '../../components'
+import { PageWrapper, Input } from '../../components'
 import * as S from './styled'
 
 const LoginPage = () => {
@@ -18,8 +18,8 @@ const LoginPage = () => {
       <CarGarage color='#303960' width='8em' />
       <S.InputWrapper>
         <S.Title>Login</S.Title>
-        <S.Input type='email' name='email' placeholder='Email' />
-        <S.Input type='password' name='password' placeholder='Senha' />
+        <Input type='email' name='email' placeholder='Email' />
+        <Input type='password' name='password' placeholder='Senha' />
       </S.InputWrapper>
       <S.Button onClick={submitLogin}>Entrar</S.Button>
     </PageWrapper>
