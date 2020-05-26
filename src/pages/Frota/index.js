@@ -31,7 +31,7 @@ const FrotaPage = () => {
   }
 
   return (
-    <PageWrapper>
+    <PageWrapper marginTop='0em'>
       <S.HeaderWrapper>
         <S.Title>Adicionar novo veiculo</S.Title>
         <S.InputWrapper>
@@ -47,7 +47,6 @@ const FrotaPage = () => {
           </S.SubmitButton>
         </S.InputWrapper>
       </S.HeaderWrapper>
-      <S.Divider />
       <S.HeaderWrapper height='80%'>
         <S.SubTitle>Veículos</S.SubTitle>
         <S.ListWrapper>

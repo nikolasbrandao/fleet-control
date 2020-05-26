@@ -6,8 +6,7 @@ const PageWrapper = styled.main`
   align-items: center;
   width: 85vw;
   height: 90vh;
-  margin-top: 5vh;
-  border-radius: 2%;
+  margin-top: ${({ marginTop }) => (marginTop ? marginTop : '5vh')};
   background-color: rgba(246, 247, 249);
   justify-content: center;
 
