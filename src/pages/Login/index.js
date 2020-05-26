@@ -20,7 +20,7 @@ const LoginPage = () => {
         },
       } = await LoginService.login(email, password)
       localStorage.setItem('@fleet-control/token', `Bearer ${token}`)
-      history.push('/frota')
+      history.push('/veiculos')
     } catch (error) {
       console.log(error.response.status)
     }
