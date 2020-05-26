@@ -10,13 +10,13 @@ const FrotaPage = () => {
   const [plate, setPlate] = useState()
 
   useEffect(() => {
-    FrotaService.getAllVelhices()
-      .then(({ data }) => {
-        setVelhices(data.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    const fecthData = async () => {
+      const {
+        data: { data },
+      } = await FrotaService.getAllVelhices()
+      setVelhices(data)
+    }
+    fecthData()
   }, [])
 
   const handleSubmitButton = async () => {
@@ -24,6 +24,10 @@ const FrotaPage = () => {
       data: { data: velhice },
     } = await FrotaService.addVelhice(plate)
     setVelhices([...velhices, velhice])
+  }
+
+  const handleDeleteButton = async (id) => {
+    const result = await FrotaService.removeVelhice(id)
   }
 
   return (
@@ -53,7 +57,7 @@ const FrotaPage = () => {
               background={index % 2 === 0 ? '#e5e5e5' : '#D9D9D9'}
             >
               <S.ItemLabel>{velhice.plate}</S.ItemLabel>
-              <S.RemoveButton>
+              <S.RemoveButton onClick={() => handleDeleteButton(velhice.id)}>
                 <CloseOutline color='#e5e5e5' width='1.5em' />
               </S.RemoveButton>
             </S.ListItem>

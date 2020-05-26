@@ -4,8 +4,13 @@ export const addVelhice = async (plate) => {
   const token = localStorage.getItem('@fleet-control/token')
   const url = `/vehicle`
   const body = { plate }
-  console.log('TOKEN', token)
   return await API.post(url, body, { headers: { Authorization: token } })
+}
+
+export const removeVelhice = async (id) => {
+  const token = localStorage.getItem('@fleet-control/token')
+  const url = `/vehicle/${id}`
+  return await API.delete(url, { headers: { Authorization: token } })
 }
 
 export const getAllVelhices = async () => {
