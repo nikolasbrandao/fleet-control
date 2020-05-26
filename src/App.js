@@ -1,11 +1,8 @@
 import React from "react";
+import LoginPage from "./pages/Login";
 
 function App() {
-  return (
-    <div>
-      <h1>Hello World!</h1>
-    </div>
-  );
+  return <LoginPage />;
 }
 
 export default App;
