@@ -42,6 +42,7 @@ export const Input = styled.input`
   font-weight: 500;
   transition: 0.3s ease;
   margin-bottom: 1em;
+  font-size: 1em;
 `
 
 export const Button = styled.button`
@@ -50,8 +51,9 @@ export const Button = styled.button`
   width: 80%;
   border: 0;
   border-radius: 4px;
-  padding: 12px 20px;
+  padding: 0.5em 1em;
   color: #e5e5e5;
+  font-size: 1em;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
