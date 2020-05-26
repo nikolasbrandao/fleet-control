@@ -27,11 +27,17 @@ const FrotaPage = () => {
   }
 
   const handleDeleteButton = async (id) => {
-    const result = await FrotaService.removeVelhice(id)
+    try {
+      await FrotaService.removeVelhice(id)
+      const newVelhices = velhices.filter((velhice) => velhice.id !== id)
+      setVelhices(newVelhices)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
-    <PageWrapper marginTop='0em'>
+    <PageWrapper margin='0em'>
       <S.HeaderWrapper>
         <S.Title>Adicionar novo veiculo</S.Title>
         <S.InputWrapper>
