@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { PlusOutline, CloseOutline } from '@styled-icons/evaicons-outline'
 import * as FrotaService from '../../services/FrotaService'
-
-import { PageWrapper, Input } from '../../components'
+import { PageWrapper, FormInput } from '../../components'
+import Validators from '../../utils/Validators'
 import * as S from './styled'
+
+const MIN_LENGTH = 7
 
 const FrotaPage = () => {
   const [velhices, setVelhices] = useState([])
@@ -20,10 +22,17 @@ const FrotaPage = () => {
   }, [])
 
   const handleSubmitButton = async () => {
-    const {
-      data: { data: velhice },
-    } = await FrotaService.addVelhice(plate)
-    setVelhices([...velhices, velhice])
+    try {
+      const plateValid = Validators.minimalLength(MIN_LENGTH)(plate)
+      if (plateValid) {
+        const {
+          data: { data: velhice },
+        } = await FrotaService.addVelhice(plate)
+        setVelhices([...velhices, velhice])
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleDeleteButton = async (id) => {
@@ -41,12 +50,13 @@ const FrotaPage = () => {
       <S.HeaderWrapper>
         <S.Title>Adicionar novo veiculo</S.Title>
         <S.InputWrapper>
-          <Input
+          <FormInput
             type='text'
             width='85%'
             value={plate}
             onChange={(e) => setPlate(e.target.value)}
             placeholder='Placa'
+            validations={[Validators.minimalLength(MIN_LENGTH)]}
           />
           <S.SubmitButton onClick={handleSubmitButton}>
             <PlusOutline color='#303960' width='2em' />

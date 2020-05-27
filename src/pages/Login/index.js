@@ -4,8 +4,11 @@ import { CarGarage } from '@styled-icons/boxicons-solid/CarGarage'
 
 import * as LoginService from '../../services/LoginService'
 
-import { PageWrapper, Input } from '../../components'
+import { PageWrapper, FormInput } from '../../components'
 import * as S from './styled'
+import Validators from '../../utils/Validators'
+
+const MIN_LENGTH = 3
 
 const LoginPage = () => {
   let history = useHistory()
@@ -14,13 +17,18 @@ const LoginPage = () => {
 
   const submitLogin = async () => {
     try {
-      const {
-        data: {
-          data: { token },
-        },
-      } = await LoginService.login(email, password)
-      localStorage.setItem('@fleet-control/token', `Bearer ${token}`)
-      history.push('/veiculos')
+      const emailValid = Validators.correctEmail(email).isValid
+      const passwordValid = Validators.minimalLength(MIN_LENGTH)(password)
+        .isValid
+      if (emailValid && passwordValid) {
+        const {
+          data: {
+            data: { token },
+          },
+        } = await LoginService.login(email, password)
+        localStorage.setItem('@fleet-control/token', `Bearer ${token}`)
+        history.push('/veiculos')
+      }
     } catch (error) {
       console.log(error.response.status)
     }
@@ -32,17 +40,19 @@ const LoginPage = () => {
       <CarGarage color='#303960' width='8em' />
       <S.InputWrapper>
         <S.Title>Login</S.Title>
-        <Input
+        <FormInput
           type='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder='Email'
+          validations={[Validators.correctEmail]}
         />
-        <Input
+        <FormInput
           type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Senha'
+          validations={[Validators.minimalLength(MIN_LENGTH)]}
         />
       </S.InputWrapper>
       <S.Button onClick={submitLogin}>Entrar</S.Button>

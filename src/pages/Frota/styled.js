@@ -45,7 +45,7 @@ export const SubTitle = styled.h2`
 `
 export const ListWrapper = styled.ul`
   height: 100%;
-  margin-bottom: 0.5em;
+  margin: 0.5em 0;
 `
 export const ListItem = styled.li`
   display: flex;
