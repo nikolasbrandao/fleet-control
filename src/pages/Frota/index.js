@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { PlusOutline, CloseOutline } from '@styled-icons/evaicons-outline'
+import { toast } from 'react-toastify'
+
 import * as FrotaService from '../../services/FrotaService'
-import { PageWrapper, FormInput } from '../../components'
 import Validators from '../../utils/Validators'
+import { PageWrapper, FormInput, ToastWrapper } from '../../components'
 import * as S from './styled'
 
 const MIN_LENGTH = 7
 
 const FrotaPage = () => {
+  let history = useHistory()
   const [velhices, setVelhices] = useState([])
   const [plate, setPlate] = useState()
 
@@ -16,7 +20,7 @@ const FrotaPage = () => {
       const {
         data: { data },
       } = await FrotaService.getAllVelhices()
-      setVelhices(data)
+      setVelhices(data || [])
     }
     fecthData()
   }, [])
@@ -29,9 +33,17 @@ const FrotaPage = () => {
           data: { data: velhice },
         } = await FrotaService.addVelhice(plate)
         setVelhices([...velhices, velhice])
+        toast.success('Veiculo adicionado com sucesso')
+      } else {
+        toast.warn('Digite uma placa valida')
       }
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 401) {
+        toast.error('Você foi desconectado')
+        history.push('/')
+      } else {
+        toast.error('Tivemos um erro, por favor tente mais tarde')
+      }
     }
   }
 
@@ -40,8 +52,14 @@ const FrotaPage = () => {
       await FrotaService.removeVelhice(id)
       const newVelhices = velhices.filter((velhice) => velhice.id !== id)
       setVelhices(newVelhices)
+      toast.success('Veiculo removido com sucesso')
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 401) {
+        toast.error('Você foi desconectado')
+        history.push('/')
+      } else {
+        toast.error('Tivemos um erro, por favor tente mais tarde')
+      }
     }
   }
 
@@ -79,6 +97,7 @@ const FrotaPage = () => {
           ))}
         </S.ListWrapper>
       </S.HeaderWrapper>
+      <ToastWrapper />
     </PageWrapper>
   )
 }

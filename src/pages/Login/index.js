@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { CarGarage } from '@styled-icons/boxicons-solid/CarGarage'
+import { toast } from 'react-toastify'
 
 import * as LoginService from '../../services/LoginService'
-
-import { PageWrapper, FormInput } from '../../components'
-import * as S from './styled'
 import Validators from '../../utils/Validators'
+import { PageWrapper, FormInput, ToastWrapper } from '../../components'
+import * as S from './styled'
 
 const MIN_LENGTH = 3
 
@@ -28,9 +28,15 @@ const LoginPage = () => {
         } = await LoginService.login(email, password)
         localStorage.setItem('@fleet-control/token', `Bearer ${token}`)
         history.push('/veiculos')
+      } else {
+        toast.warn('Preencha suas informações')
       }
     } catch (error) {
-      console.log(error.response.status)
+      if (error.response.status === 401) {
+        toast.error('Email ou senha incorretos')
+      } else {
+        toast.error('Tivemos um erro, por favor tente mais tarde')
+      }
     }
   }
 
@@ -56,6 +62,7 @@ const LoginPage = () => {
         />
       </S.InputWrapper>
       <S.Button onClick={submitLogin}>Entrar</S.Button>
+      <ToastWrapper />
     </PageWrapper>
   )
 }
