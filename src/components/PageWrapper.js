@@ -5,7 +5,7 @@ const PageWrapper = styled.main`
   flex-direction: column;
   align-items: center;
   width: 90vw;
-  height: 90vh;
+  height: 94vh;
   margin: ${({ margin }) => (margin ? margin : '5vh')};
   background-color: rgba(246, 247, 249);
   justify-content: center;

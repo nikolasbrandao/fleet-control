@@ -8,7 +8,7 @@ const NavWrapper = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 10vh;
+  height: 6vh;
   padding: 0.5em;
   align-items: center;
   background: #000;

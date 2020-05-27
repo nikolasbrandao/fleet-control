@@ -24,6 +24,7 @@ const LabelValidation = styled.span`
   margin: 0.2em;
 `
 const InputWrapper = styled.div`
+  width: ${(props) => (props.width ? props.width : '100%')};
   margin: ${({ margin }) => (margin ? margin : '0.9em 0')};
 `
 
@@ -39,7 +40,7 @@ const FormInput = (props) => {
   }
 
   return (
-    <InputWrapper margin={props.margin}>
+    <InputWrapper margin={props.margin} width={props.width}>
       <Input {...props} onChange={(e) => validateOnChange(e)} />
       {validations.map((validation) => (
         <LabelValidation key={validation.message} width={props.width}>
