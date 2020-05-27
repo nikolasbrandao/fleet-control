@@ -96,7 +96,13 @@ const FrotaPage = () => {
               background={index % 2 === 0 ? '#e5e5e5' : '#D9D9D9'}
             >
               <S.ItemLabel>{velhice.plate}</S.ItemLabel>
-              <S.RemoveButton onClick={() => handleDeleteButton(velhice.id)}>
+              <S.RemoveButton
+                onClick={() => {
+                  window.confirm(
+                    'Você tem certeza de que deseja excluir esse veiculo?'
+                  ) && handleDeleteButton(velhice.id)
+                }}
+              >
                 <CloseOutline color='#e5e5e5' width='1.5em' />
               </S.RemoveButton>
             </S.ListItem>
