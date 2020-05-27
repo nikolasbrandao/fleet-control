@@ -32,7 +32,7 @@ const LoginPage = () => {
         toast.warn('Preencha suas informações')
       }
     } catch (error) {
-      if (error.response.status === 401) {
+      if (error.response && error.response.status === 401) {
         toast.error('Email ou senha incorretos')
       } else {
         toast.error('Tivemos um erro, por favor tente mais tarde')

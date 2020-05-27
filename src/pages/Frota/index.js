@@ -8,7 +8,7 @@ import Validators from '../../utils/Validators'
 import { PageWrapper, FormInput, ToastWrapper } from '../../components'
 import * as S from './styled'
 
-const MIN_LENGTH = 7
+const PLATE_LENGTH = 7
 
 const FrotaPage = () => {
   let history = useHistory()
@@ -27,7 +27,9 @@ const FrotaPage = () => {
 
   const handleSubmitButton = async () => {
     try {
-      const plateValid = Validators.minimalLength(MIN_LENGTH)(plate)
+      const plateValid =
+        Validators.minimalLength(PLATE_LENGTH)(plate).isValid &&
+        Validators.maximalLength(PLATE_LENGTH)(plate).isValid
       if (plateValid) {
         const {
           data: { data: velhice },
@@ -38,7 +40,7 @@ const FrotaPage = () => {
         toast.warn('Digite uma placa valida')
       }
     } catch (error) {
-      if (error.response.status === 401) {
+      if (error.response && error.response.status === 401) {
         toast.error('Você foi desconectado')
         history.push('/')
       } else {
@@ -54,7 +56,7 @@ const FrotaPage = () => {
       setVelhices(newVelhices)
       toast.success('Veiculo removido com sucesso')
     } catch (error) {
-      if (error.response.status === 401) {
+      if (error.response && error.response.status === 401) {
         toast.error('Você foi desconectado')
         history.push('/')
       } else {
@@ -74,7 +76,11 @@ const FrotaPage = () => {
             value={plate}
             onChange={(e) => setPlate(e.target.value)}
             placeholder='Placa'
-            validations={[Validators.minimalLength(MIN_LENGTH)]}
+            margin='0em'
+            validations={[
+              Validators.minimalLength(PLATE_LENGTH),
+              Validators.maximalLength(PLATE_LENGTH),
+            ]}
           />
           <S.SubmitButton onClick={handleSubmitButton}>
             <PlusOutline color='#303960' width='2em' />

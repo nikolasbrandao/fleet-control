@@ -18,7 +18,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 0 1em;
   width: 100%;
 `
