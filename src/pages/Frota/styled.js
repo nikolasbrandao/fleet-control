@@ -47,6 +47,7 @@ export const SubTitle = styled.h2`
 export const ListWrapper = styled.ul`
   height: 100%;
   margin: 0.5em 0;
+  overflow-y: auto;
 `
 export const ListItem = styled.li`
   display: flex;

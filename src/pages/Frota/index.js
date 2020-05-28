@@ -34,6 +34,7 @@ const FrotaPage = () => {
           data: { data: velhice },
         } = await FrotaService.addVelhice(plate)
         setVelhices([...velhices, velhice])
+        setPlate('')
         toast.success('Veiculo adicionado com sucesso')
       } else {
         toast.warn('Digite uma placa valida')
