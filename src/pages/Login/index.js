@@ -12,8 +12,8 @@ const MIN_LENGTH = 3
 
 const LoginPage = () => {
   let history = useHistory()
-  const [email, setEmail] = useState('frontend-dev@easycarros.com')
-  const [password, setPassword] = useState('Fr0nt3ndR0ck5!')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const submitLogin = async () => {
     try {

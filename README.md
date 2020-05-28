@@ -54,6 +54,7 @@ O projeto irá funcionar sem a api, porém o não irá conseguir acessar o aplic
         API.js
 
 Basta trocar a _baseURL_ para um endereço ou porta que reflita o projeto backend.
+Para fazer login, confira as credenciais da API Backend [aqui](https://bitbucket.org/easycarros/frontend-challenge/).
 
 ## Estrutura do projeto
 
