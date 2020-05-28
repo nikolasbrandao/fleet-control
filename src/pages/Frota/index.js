@@ -24,6 +24,17 @@ const FrotaPage = () => {
     fecthData()
   }, [])
 
+  const handleError = (error) => {
+    if (error.response && error.response.status === 401) {
+      toast.error('Você foi desconectado')
+      setTimeout(() => {
+        history.push('/')
+      }, 2000)
+    } else {
+      toast.error('Tivemos um erro, por favor tente mais tarde')
+    }
+  }
+
   const handleSubmitButton = async () => {
     try {
       const plateValid =
@@ -40,14 +51,7 @@ const FrotaPage = () => {
         toast.warn('Digite uma placa valida')
       }
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        toast.error('Você foi desconectado')
-        setTimeout(() => {
-          history.push('/')
-        }, 2000)
-      } else {
-        toast.error('Tivemos um erro, por favor tente mais tarde')
-      }
+      handleError(error)
     }
   }
 
@@ -58,14 +62,7 @@ const FrotaPage = () => {
       setVelhices(newVelhices)
       toast.success('Veiculo removido com sucesso')
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        toast.error('Você foi desconectado')
-        setTimeout(() => {
-          history.push('/')
-        }, 2000)
-      } else {
-        toast.error('Tivemos um erro, por favor tente mais tarde')
-      }
+      handleError(error)
     }
   }
 
