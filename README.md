@@ -1,68 +1,91 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fleet-control
 
-## Available Scripts
+## Sobre o repositorio
 
-In the project directory, you can run:
+O repositorio tem como objetivo solucionar o desafio proposto pela EuroIT com parceria da Easy Carros para a vaga de Desenvolvedor Front End, a descrição do desafio pode ser encontrada no [link](https://bitbucket.org/easycarros/frontend-challenge/).
 
-### `yarn start`
+## Iniciando
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A base do desafio é criar um Aplicativo ou SPA que conectado a API fornecida pela Easy Carros atue como um controlador de frota para o usuário.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Para o desafio optei por utilizar React e construir uma SPA em conjunto com algumas bibliotecas para chegar ao resultado esperado.
 
-### `yarn test`
+### Pré requisitos
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para utilizar os projetos é necessario ter o Node instalado na maquina, o projeto foi criado utilizando node na versão 12.16.3 download [aqui](https://nodejs.org/en/).
 
-### `yarn build`
+## Instalação
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para rodar o projeto basta utilizar o comando:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```bash
+  $ npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  # ou caso utilize yarn
+  $ yarn install
+```
 
-### `yarn eject`
+## Rodando a aplicação
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+$ npm run start
+# ou caso utilize yarn
+$ yarn start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+O projeto irá rodar na porta 3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Node foi a principal tecnologia a ser utilizada, o projeto utiliza:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- React (criado apartir do create-react-app)
+- Axios (para recuperar os dados da Api)
+- React Router Dom (para gerenciar a navegação entre as páginas)
+- React Toastify (para os alertas que são exibidos)
+- Styled Components (para auxiliar na criação dos componentes, estilos, e temas)
+- Styled Icons (para termos opções de icones para menus, botões e logo)
+- EsLint e Prettier (para manter o codigo padronizado e coeso)
 
-## Learn More
+## Observações
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+O projeto irá funcionar sem a api, porém o não irá conseguir acessar o aplicativo devido o login, caso a api não esteja rodando localmente ou utilizando uma outra porta será necessário modificar o arquivo _API.js_ localizado em:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    src/
+      -utils/
+        API.js
 
-### Code Splitting
+Basta trocar a _baseURL_ para um endereço ou porta que reflita o projeto backend.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Estrutura do projeto
 
-### Analyzing the Bundle Size
+    src/
+      -assets/
+      -components/
+      -pages/
+        -Frota/
+        -Login/
+      -services/
+      -utils/
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### assets
 
-### Making a Progressive Web App
+Pasta o nosso reset, nosso css global e o nosso tema padrão, os arquivos são importados pelo arquivo _index.js_.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### components
 
-### Advanced Configuration
+Nesse diretorio ficam os componentes que podem ser compartilhados no nosso projeto, componentes 'comuns' para o projeto, temos o nosso _FormInput_ que auxilia na construção e validação dos nosso campos de input, o _Header_ que juntamente com o _MenuList_ provem nossa barra na área logada com as opções do menu e por fim os nosso Wrappers de Paginas(_PageWrapper_) e Alertas(_ToastWrapper_).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### pages
 
-### Deployment
+O diretorio onde ficam armazenadas as paginas, cada pagina fica dentro do seu respectivo diretorio, a pagina tem como principal responsabilidade buscar e tratar dados (através do services) para serem repassados para os componentes.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+#### Observação
 
-### `yarn build` fails to minify
+Caso a pagina necessite de estilos propios eles são encontrados no arquivos _styled.js_ que ficam dentro do diretorio da página e não devem ser importados por nenhuma outra pagina, caso isso ocorra ele deve ser deslocado para o diretorio components e virar dependencia de ambas as paginas.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### services
+
+O diretorio services armazena os arquivos responsaveis por recuperar e enviar dados para nossas API's.
+
+### utils
+
+Por fim o diretorio de utilitario está o nosso arquivo de criação da nossa API base e os nossos validadores.
