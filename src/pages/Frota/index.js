@@ -13,7 +13,7 @@ const PLATE_LENGTH = 7
 const FrotaPage = () => {
   let history = useHistory()
   const [velhices, setVelhices] = useState([])
-  const [plate, setPlate] = useState()
+  const [plate, setPlate] = useState('')
 
   useEffect(() => {
     const fecthData = async () => {
@@ -42,7 +42,9 @@ const FrotaPage = () => {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         toast.error('Você foi desconectado')
-        history.push('/')
+        setTimeout(() => {
+          history.push('/')
+        }, 2000)
       } else {
         toast.error('Tivemos um erro, por favor tente mais tarde')
       }
@@ -58,7 +60,9 @@ const FrotaPage = () => {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         toast.error('Você foi desconectado')
-        history.push('/')
+        setTimeout(() => {
+          history.push('/')
+        }, 2000)
       } else {
         toast.error('Tivemos um erro, por favor tente mais tarde')
       }

@@ -1,8 +1,7 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Header from './components/Header'
-
 import LoginPage from './pages/Login'
 import FrotaPage from './pages/Frota'
 
@@ -28,12 +27,10 @@ function App() {
         <LoginPage />
       </Route>
       <RequireAuth>
-        <BrowserRouter>
-          <Header />
-          <Route path='/veiculos'>
-            <FrotaPage />
-          </Route>
-        </BrowserRouter>
+        <Header />
+        <Route path='/veiculos'>
+          <FrotaPage />
+        </Route>
       </RequireAuth>
     </Switch>
   )
