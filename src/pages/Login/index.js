@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { CarGarage } from '@styled-icons/boxicons-solid/CarGarage'
+
 import { toast } from 'react-toastify'
 
 import * as LoginService from '../../services/LoginService'
@@ -43,7 +43,7 @@ const LoginPage = () => {
   return (
     <PageWrapper>
       <S.Title align='center'>Fleet Car</S.Title>
-      <CarGarage color='#303960' width='8em' />
+      <S.CarIcon />
       <S.InputWrapper>
         <S.Title>Login</S.Title>
         <FormInput

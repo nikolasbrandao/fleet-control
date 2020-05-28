@@ -7,7 +7,7 @@ const PageWrapper = styled.main`
   width: 90vw;
   height: 94vh;
   margin: ${({ margin }) => (margin ? margin : '5vh')};
-  background-color: rgba(246, 247, 249);
+  background-color: ${({ theme }) => theme.secondaryLight};
   justify-content: center;
 
   @media (min-width: 768px) {

@@ -21,13 +21,28 @@ const MenuBar = styled.div`
   padding: 0.5em;
   align-items: center;
   width: 100vw;
-  background: #000;
+  background: ${({ theme }) => theme.primaryDark};
 `
 
 const NavTitle = styled.span`
   font-size: 1.2em;
-  color: #fff;
+  color: ${({ theme }) => theme.primaryLight};
   text-transform: uppercase;
+`
+
+const CloseButton = styled(Close)`
+  color: ${({ theme }) => theme.primaryLight};
+  width: 2em;
+`
+
+const MenuButton = styled(Menu)`
+  color: ${({ theme }) => theme.primaryLight};
+  width: 2em;
+`
+
+const DotsIcon = styled(DotsVertical)`
+  color: ${({ theme }) => theme.primaryLight};
+  width: 2em;
 `
 
 const Header = () => {
@@ -43,12 +58,12 @@ const Header = () => {
     <NavWrapper>
       <MenuBar>
         {showMenu ? (
-          <Close color='#FFF' width='2em' onClick={() => setShowMenu(false)} />
+          <CloseButton onClick={() => setShowMenu(false)} />
         ) : (
-          <Menu color='#FFF' width='2em' onClick={() => setShowMenu(true)} />
+          <MenuButton onClick={() => setShowMenu(true)} />
         )}
         <NavTitle>{title}</NavTitle>
-        <DotsVertical color='#FFF' width='2em' />
+        <DotsIcon />
       </MenuBar>
       {showMenu && <MenuList />}
     </NavWrapper>

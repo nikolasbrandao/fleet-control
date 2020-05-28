@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { PlusOutline, CloseOutline } from '@styled-icons/evaicons-outline'
 import { toast } from 'react-toastify'
 
 import * as FrotaService from '../../services/FrotaService'
@@ -87,7 +86,7 @@ const FrotaPage = () => {
             ]}
           />
           <S.SubmitButton onClick={handleSubmitButton}>
-            <PlusOutline color='#303960' width='2em' />
+            <S.AddIcon />
           </S.SubmitButton>
         </S.InputWrapper>
       </S.HeaderWrapper>
@@ -95,10 +94,7 @@ const FrotaPage = () => {
         <S.SubTitle>Veículos</S.SubTitle>
         <S.ListWrapper>
           {velhices.map((velhice, index) => (
-            <S.ListItem
-              key={velhice.id}
-              background={index % 2 === 0 ? '#e5e5e5' : '#D9D9D9'}
-            >
+            <S.ListItem key={velhice.id} backgroundOdd={index % 2 === 0}>
               <S.ItemLabel>{velhice.plate}</S.ItemLabel>
               <S.RemoveButton
                 onClick={() => {
@@ -107,7 +103,7 @@ const FrotaPage = () => {
                   ) && handleDeleteButton(velhice.id)
                 }}
               >
-                <CloseOutline color='#e5e5e5' width='1.5em' />
+                <S.CloseIcon />
               </S.RemoveButton>
             </S.ListItem>
           ))}

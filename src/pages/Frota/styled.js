@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { PlusOutline, CloseOutline } from '@styled-icons/evaicons-outline'
 
 export const HeaderWrapper = styled.section`
   display: flex;
@@ -24,14 +25,14 @@ export const InputWrapper = styled.div`
 `
 export const SubmitButton = styled.button`
   outline: none;
-  background: #f8b24f;
+  background: ${({ theme }) => theme.primaryOrange};
   border: 0;
   border-radius: 8%;
   padding: 0.5em;
   cursor: pointer;
 `
 export const Divider = styled.hr`
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid ${({ theme }) => theme.primaryLight};
   width: 90%;
   margin: 0.2em 0;
 `
@@ -54,22 +55,33 @@ export const ListItem = styled.li`
   align-items: center;
   width: 100%;
   padding: 0.5em 1.2em;
-  background: ${({ background }) => (background ? background : 'none')};
-  border-bottom: 2px solid #fff;
+  background: ${({ backgroundOdd, theme }) =>
+    backgroundOdd ? theme.tertiaryLight : theme.secondaryLight};
+  border-bottom: 2px solid ${({ theme }) => theme.primaryLight};
 `
 
 export const ItemLabel = styled.span`
   font-size: 1.2em;
   font-weight: 600;
-  color: #303960;
+  color: ${({ theme }) => theme.primaryBlue};
   text-transform: uppercase;
 `
 
 export const RemoveButton = styled.button`
   outline: none;
-  background: #9a1f40;
+  background: ${({ theme }) => theme.primaryRed};
   border: 0;
   border-radius: 8%;
   padding: 0.5em;
   cursor: pointer;
+`
+
+export const CloseIcon = styled(CloseOutline)`
+  color: ${({ theme }) => theme.primaryLight};
+  width: 1.5em;
+`
+
+export const AddIcon = styled(PlusOutline)`
+  color: ${({ theme }) => theme.primaryBlue};
+  width: 2em;
 `

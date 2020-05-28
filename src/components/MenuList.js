@@ -7,15 +7,15 @@ const MenuListWrapper = styled.ul`
   top: 6vh;
   height: auto;
   width: 100%;
-  background: #000;
+  background: ${({ theme }) => theme.primaryDark};
   @media (min-width: 425px) {
     width: 20vw;
   }
 `
 
 const MenuItem = styled.li`
-  border-bottom: 1px solid #fff;
-  color: #fff;
+  border-bottom: 1px solid ${({ theme }) => theme.primaryLight};
+  color: ${({ theme }) => theme.primaryLight};
   font-size: 1.5em;
   text-align: center;
   padding: 0.5em 0;

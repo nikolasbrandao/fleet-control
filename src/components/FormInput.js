@@ -3,15 +3,15 @@ import styled from 'styled-components'
 
 const Input = styled.input`
   width: ${(props) => (props.width ? props.width : '100%')};
-  height: 35px;
+  height: 2.2em;
   outline: none;
   display: block;
-  background: rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.secondaryDark};
   border: 0;
   border-radius: 4px;
   box-sizing: border-box;
   padding: 12px 20px;
-  color: #303960;
+  color: ${({ theme }) => theme.primaryBlue};
   font-weight: 500;
   transition: 0.3s ease;
   font-size: 1em;
@@ -19,7 +19,7 @@ const Input = styled.input`
 
 const LabelValidation = styled.span`
   width: ${(props) => (props.width ? props.width : '100%')};
-  color: #9a1f40;
+  color: ${({ theme }) => theme.primaryRed};
   font-size: 0.8em;
   margin: 0.2em;
 `
